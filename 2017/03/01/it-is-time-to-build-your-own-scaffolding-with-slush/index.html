@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="前端开发者, 擅长各项前端技能，深入研究移动端开发与前端性能, 对 Nodejs 后端开发略有涉及。此为博客一枚.">
+    <meta name="keyword"  content="前端 前端工程师 HTML5 CSS3 Javascript Node.js">
+    <meta name="author"  content="sqrtthree | 根号三">
+    <meta name="email"  content="sqrtthree@foxmail.com | imsqrtthree@gmail.com">
+		<title>
+      
+        是时候来用 Slush 构建你自己的脚手架了 - 根号三
+      
+    </title>
+    <link rel="shortcut icon" href="https://assets-cdn.github.com/favicon.ico">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/dist/styles/index.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-light navbar-fixed-top navbar-custom">
+  <div class="clearfix">
+    <button class="navbar-toggler pull-right hidden-sm-up" type="button" data-toggle="collapse" data-target="#main-nav">&#9776;</button>
+    <a class="navbar-brand hidden-sm-up" href="/">根号三</a>
+  </div>
+  <div id="main-nav" class="collapse navbar-toggleable-xs in">
+    <a class="navbar-brand hidden-sm-down" href="/">根号三</a>
+    <ul class="nav navbar-nav navbar-right text-uppercase hidden-sm-down">
+      
+        
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">about</a>
+            </li>
+            
+        
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">categories</a>
+            </li>
+            
+        
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">Tags</a>
+            </li>
+            
+        
+      
+      
+        
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml">RSS</a>
+            </li>
+        
+      
+    </ul>
+  </div>
+</nav>
+
+    
+  <header class="intro-header">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        
+          <div class="post-heading">
+              <div class="tags ghost-tags">
+                
+                  <a class="tag" href="/tags/#工具" title="工具">工具</a>
+                
+                  <a class="tag" href="/tags/#gulp" title="gulp">gulp</a>
+                
+              </div>
+              <h1>是时候来用 Slush 构建你自己的脚手架了</h1>
+              
+              <span class="meta">Posted by sqrtthree on Mar 1, 2017</span>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container">
+    <div class="row">
+      
+        <div id="markdown-container" class="col-md-10 col-md-offset-1">
+          <div class="markdown-body">
+            <h2 id="Slush-是什么？"><a href="#Slush-是什么？" class="headerlink" title="Slush 是什么？"></a>Slush 是什么？</h2><p>简单的来说，Slush 就是一个脚手架生成工具。什么？脚手架？这是什么鬼？嗯，脚手架嘛，自然是这个样子咯~</p>
+<a id="more"></a>
+<p><img src="https://ww2.sinaimg.cn/large/006tNc79gy1fd3vev11wnj30go0b3431.jpg" alt=""></p>
+<p>什么？你问的是编程中的脚手架呀？啊，这么说吧。身为一个前端开发者，每次新建一个项目的时候是不是要创建好多个文件夹、配置文件？写个文档是不是要创建好多个目录？然而每个项目的结构和配置文件都大同小异，是不是早已繁琐感觉人生无望，失去了活着的意义？</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fd3vw3uqtfj30bo08rwem.jpg" alt=""></p>
+<p>就在这个时候，Slush 横空出世，能够让你轻松搞定这些繁琐的事情，重新找回人生的意义，你就说吼不吼啊。从此麻麻再也不用担心我整天都在忙着创建文件夹啦。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fd3wiy66q4g306o0360vr.gif" alt=""></p>
+<h2 id="道理我都懂，可我大-Yeoman-用的好好的，为什么要换新？"><a href="#道理我都懂，可我大-Yeoman-用的好好的，为什么要换新？" class="headerlink" title="道理我都懂，可我大 Yeoman 用的好好的，为什么要换新？"></a>道理我都懂，可我大 Yeoman 用的好好的，为什么要换新？</h2><p>嗯。Yeoman 确实也是一个很好用的脚手架工具，历史悠久。然而它以 Grunt 为基础工具，上手难度大大提高。在轮子层出不穷的前端领域早已是风前残烛。而 Slush 则是基于 Gulp 的 『流式』思想作为基础工具，当你在做定制化脚手架时，Gulp 简单易用的特点则能让你轻轻松松搞定。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fd3wvq1wemj3060046q36.jpg" alt=""></p>
+<p>噢，这么屌？那该怎么用呢？</p>
+<h1 id="说了这么多，我到底该怎么用？"><a href="#说了这么多，我到底该怎么用？" class="headerlink" title="说了这么多，我到底该怎么用？"></a>说了这么多，我到底该怎么用？</h1><p>好啦，废话不多说啦，我们赶紧来趁着这个热乎劲看看怎么使用吧。</p>
+<h3 id="1-安装-slush"><a href="#1-安装-slush" class="headerlink" title="1. 安装 slush"></a>1. 安装 slush</h3><p>首先，你得有 NodeJS 环境，什么？连 NodeJS 都没装？赶紧回家洗洗睡吧。如果你已经有了呢，你就可以通过 npm 直接将 slush 安装到全局环境下啦：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> -g slush</div></pre></td></tr></table></figure>
+<p> 安装完了之后，你可以执行下面这行命令来确保安装成功：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">slush -v</span></div></pre></td></tr></table></figure>
+<p>如果你能看到输出了一个版本号，就说明已经安装成功啦。下面我们就来看一下如何使用吧。</p>
+<h3 id="2-安装第三方脚手架"><a href="#2-安装第三方脚手架" class="headerlink" title="2. 安装第三方脚手架"></a>2. 安装第三方脚手架</h3><p>在使用 slush 创建项目之前，你得先安装一些别人开发好的脚手架。安装好脚手架之后才能根据脚手架生成约定好的项目结构哟。</p>
+<p>咦？不知道有什么脚手架？快来 <a href="http://slushjs.github.io/generators" target="_blank" rel="external">大厅</a> 里找找吧。</p>
+<p>很好，你已经找到了自己喜欢的脚手架了，我们快来安装它吧。打住，提醒你一下，脚手架要安装到全局环境下才有效哟。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> -g slush-react-starter-kit</div></pre></td></tr></table></figure>
+<h3 id="3-开始生成项目吧"><a href="#3-开始生成项目吧" class="headerlink" title="3. 开始生成项目吧"></a>3. 开始生成项目吧</h3><p>现在我们已经安装好需要的一切了，终于可以开始创建项目啦。</p>
+<p>首先，创建一个项目文件夹并进入文件夹中：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir <span class="keyword">my</span>-<span class="keyword">first</span>-slush-project</div><div class="line">cd <span class="keyword">my</span>-<span class="keyword">first</span>-slush-project</div></pre></td></tr></table></figure>
+<p>其次，执行 slush 生成命令：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">slush react-starter-kit</span></div></pre></td></tr></table></figure>
+<p><code>react-starter-kit</code>是什么鬼？我们安装的明明是 <code>slush-react-starter-kit</code> 呀。没错，在生成项目的时候，slush 后面跟的脚手架名字中是不带 <code>slush</code> 关键词的。就是这么任性。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fd3xirh0ebg30jg0axhdt.gif" alt=""></p>
+<h2 id="没找到好使的，宝宝想要自定义怎么办？"><a href="#没找到好使的，宝宝想要自定义怎么办？" class="headerlink" title="没找到好使的，宝宝想要自定义怎么办？"></a>没找到好使的，宝宝想要自定义怎么办？</h2><p>当然了，可能你翻遍了整个大厅都没找到自己想要的，迫切想要自己定制一个脚手架怎么办呢？且听我慢慢道来。</p>
+<p>其实很简单啦，Slush 脚手架就是一个普通的 npm package，唯一需要注意的有这么几点：</p>
+<ol>
+<li>名字要以 <code>slush-*</code> 的方式</li>
+<li>package 中包含一个 <code>slushfile.js</code> 文件</li>
+<li>package.json 文件中加上 slushgenerator 关键词方便别人检索</li>
+<li>模板文件放在 <code>templates</code> 文件夹中</li>
+<li>别忘了安装 gulp 作为本地依赖啦</li>
+</ol>
+<p>假设你已经按照上面这些约定做好了准备工作，那么接下来我们就可以搞一件大新闻啦。</p>
+<h4 id="第一步：创建模板文件"><a href="#第一步：创建模板文件" class="headerlink" title="第一步：创建模板文件"></a>第一步：创建模板文件</h4><p>首先，你要将模板文件（就是运行脚手架之后生成的项目文件）全部放到 <code>templates</code> 文件夹中</p>
+<h4 id="第二步：在-slushfile-js-文件中编写任务流。"><a href="#第二步：在-slushfile-js-文件中编写任务流。" class="headerlink" title="第二步：在 slushfile.js 文件中编写任务流。"></a>第二步：在 slushfile.js 文件中编写任务流。</h4><p>前面已经说到 Slush 是基于 Gulp 作为基础工具的，所以你只需要按照 Gulp 的使用方法在 <code>slushfile.js</code> 编写任务流就可以啦。</p>
+<p>咦，好像有点不太对，既然是用 Gulp，那么 <code>gulpfile.js</code>  文件呢？</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fd3y3nwzfgj304o03smxd.jpg" alt=""></p>
+<p>这里确实是不需要 <code>gulpfile.js</code>  文件啦，因为 Gulp 任务都在 <code>slushfile.js</code> 文件中写啦，Slush 会帮你自动驱动 Gulp 的啦。</p>
+<p>好了，那么 <code>slushfile.js</code> 文件中的到底该怎么写呢？放着我来，小哥亲自给你示范一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    install = <span class="built_in">require</span>(<span class="string">'gulp-install'</span>),</div><div class="line">    conflict = <span class="built_in">require</span>(<span class="string">'gulp-conflict'</span>),</div><div class="line">    template = <span class="built_in">require</span>(<span class="string">'gulp-template'</span>),</div><div class="line">    inquirer = <span class="built_in">require</span>(<span class="string">'inquirer'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</div><div class="line">  inquirer.prompt([</div><div class="line">    &#123;</div><div class="line">    	type: <span class="string">'input'</span>,</div><div class="line">    	name: <span class="string">'name'</span>, </div><div class="line">    	message: <span class="string">'Give your app a name'</span>, </div><div class="line">    	<span class="keyword">default</span>: gulp.args.join(<span class="string">' '</span>) <span class="comment">// 从运行参数中获取值作为 name 的默认值。</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">    	type: <span class="string">'confirm'</span>,</div><div class="line">    	name: <span class="string">'moveon'</span>,</div><div class="line">        message: <span class="string">'Continue?'</span></div><div class="line">    &#125;</div><div class="line">  ]).then(<span class="function"><span class="keyword">function</span> (<span class="params">answers</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!answers.moveon) &#123;</div><div class="line">      <span class="keyword">return</span> done();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    gulp.src(__dirname + <span class="string">'/templates/**'</span>)      <span class="comment">// 使用脚本所在的目录作为相对路径。</span></div><div class="line">      .pipe(template(answers))                 <span class="comment">// Lodash 模板支持，可以方便的在模板中进行插值。</span></div><div class="line">      .pipe(conflict(<span class="string">'./'</span>))                    <span class="comment">// 当文件冲突时，询问是否覆盖。</span></div><div class="line">      .pipe(gulp.dest(<span class="string">'./'</span>))                   <span class="comment">// 输出到执行命令的当前文件夹中。</span></div><div class="line">      .pipe(install())                         <span class="comment">// 使用 `bower install` 或 `npm install` 执行安装操作。</span></div><div class="line">      .on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        done();                                <span class="comment">// 告知完成。</span></div><div class="line">      &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>PS: 去哪里发现诸如 <code>[inquirer](https://github.com/SBoudrias/Inquirer.js)</code> 这么好用的 package 呢？你可以关注下 <a href="https://github.com/sqrthree/awesome-npm-packages" target="_blank" rel="external">github.com/sqrthree/awesome-npm-packages</a> 哟。</p>
+<p>现在就已经搞定啦，接下来怎么使用呢？因为 Slush 调用的是全局环境下的脚手架，但是目前我们的脚手架并不在全局环境中，然而你还没发布这个脚手架，不能直接工作 <code>npm install -g</code> 进行全局安装，所以显然是不！能！用！啦！哈！哈！哈！</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79ly1fd3ynyznx6g3050050wgk.gif" alt=""></p>
+<p>别着急砸电脑嘛，我们还有一个办法捏。那就是通过 <code>npm link</code> 命令将当前脚手架挂载到全局环境中啦。你只需要在当前文件夹中执行 <code>npm link</code>，搞定，收工（前提是 <code>package.json</code> 已经写好）。然后就可以随便找个文件夹安装我们上面说的方法使用脚手架啦。</p>
+<h2 id="生成-Slush-脚手架的脚手架"><a href="#生成-Slush-脚手架的脚手架" class="headerlink" title="生成 Slush 脚手架的脚手架"></a>生成 Slush 脚手架的脚手架</h2><p>尽管自定义一个脚手架已经非常方便了，但是细心的你会发现几乎每个脚手架之间 <code>slushfile.js</code> 也都大同小异，只是 <code>templates</code> 文件夹中的模板文件不一样，所以呢，你懂得😉。</p>
+<p><a href="https://github.com/chrisenytc/slush-generator" target="_blank" rel="external">slush-generator</a> 就是这么一个让我们来生成 Slush 脚手架的脚手架。有了它，创建自定义脚手架的时候异常方便。</p>
+<h4 id="第一步：安装-slush-generator"><a href="#第一步：安装-slush-generator" class="headerlink" title="第一步：安装 slush-generator"></a>第一步：安装 slush-generator</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g slush-generator</div></pre></td></tr></table></figure>
+<h4 id="第二步：创建并进入自定义脚手架的文件夹"><a href="#第二步：创建并进入自定义脚手架的文件夹" class="headerlink" title="第二步：创建并进入自定义脚手架的文件夹"></a>第二步：创建并进入自定义脚手架的文件夹</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mkdir</span> <span class="keyword">my</span>-slush-generator</div><div class="line">cd <span class="keyword">my</span>-slush-generator</div></pre></td></tr></table></figure>
+<h4 id="第三步：运行任务："><a href="#第三步：运行任务：" class="headerlink" title="第三步：运行任务："></a>第三步：运行任务：</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">slush generator</span></div></pre></td></tr></table></figure>
+<p>之后会让你回答一些问题，在回答过之后，你的自定义脚手架目录就已经生成好啦。接下来只需要在 <code>templates</code> 文件夹中放置你需要的文件就好了。</p>
+<h2 id="查看已经安装好的脚手架"><a href="#查看已经安装好的脚手架" class="headerlink" title="查看已经安装好的脚手架"></a>查看已经安装好的脚手架</h2><p>直接输入 <code>slush</code> 即可看到已经安装过的脚手架：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">➜  <span class="selector-tag">slush</span></div><div class="line"><span class="selector-attr">[slush]</span> <span class="selector-tag">Installed</span> <span class="selector-tag">generators</span></div><div class="line"><span class="selector-attr">[slush]</span> ├── <span class="selector-tag">generator</span> (0<span class="selector-class">.2</span><span class="selector-class">.11</span>)</div><div class="line"><span class="selector-attr">[slush]</span> └── <span class="selector-tag">koa2</span> (0<span class="selector-class">.1</span><span class="selector-class">.0</span>)</div></pre></td></tr></table></figure>
+<p>怎么样？是不是已经迫不及待的想要尝试了？</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fd3z94buhfj30g40g4t9g.jpg" alt=""></p>
+<p>喔，对了，少侠留步，差点忘了告诉你一件事情：</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fd3za793nqj30rs0rsabk.jpg" alt=""></p>
+
+          </div>
+          
+            
+              <div id="donation">
+  <h2>您的鼓励是作者写作最大的动力</h2>
+  <p>如果您认为本网站的文章质量不错，读后觉得收获很大，不妨请我喝杯咖啡，让我有动力继续写出高质量的文章。: )</p>
+  
+    <a href="http://7xl8me.com1.z0.glb.clouddn.com/alipay.JPG" class="btn btn-primary" target="_blank">支付宝打赏</a>
+  
+  
+    <a href="http://7xl8me.com1.z0.glb.clouddn.com/wechat_receive_money.JPG" class="btn btn-success" target="_blank">微信打赏</a>
+  
+</div>
+
+            
+          
+          
+  <div class="social-share" style="margin-top: 1em;"></div>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+          
+  <hr>
+  <ul class="pager">
+    <li class="pager-prevnull">
+      
+        <a href="/2017/03/15/what-it-feels-like-to-be-an-open-source-maintainer/" data-toggle="tooltip" data-placement="top" title="作为一个开源软件的作者是一种什么样的感受？">
+          Previous<br>
+          <span>作为一个开源软件的作者是一种什么样的感受？</span>
+        </a>
+      
+    </li>
+    <li class="pager-next">
+      
+        <a href="/2017/02/10/a-5-minute-intro-to-styled-components/" data-toggle="tooltip" data-placement="top" title="一个关于 Styled Components 的五分钟介绍">
+          Next<br>
+          <span>一个关于 Styled Components 的五分钟介绍</span>
+        </a>
+      
+
+    </li>
+</ul>
+
+          
+  
+    <!-- 网易云跟帖 start -->
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+      <script>
+      var cloudTieConfig = {
+        url: document.location.href,
+        sourceId: "",
+        productKey: "c3543b8fa8f94d3c88ec9b8a1e9e6758",
+        target: "cloud-tie-wrapper"
+      };
+      var yunManualLoad = true;
+      Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+      </script>
+    <!-- 网易云跟帖 end -->
+  
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+
+    <footer id="footer">
+  <div class="container">
+    <div class="row">
+      <ul>
+        <li class="col-md-3">
+          <h2>友情链接</h2>
+          
+            <div><a href="https://github.com/sqrthree" target="_blank">GitHub</a></div>
+          
+            <div><a href="https://zhuanlan.zhihu.com/FETalk" target="_blank">FETalk</a></div>
+          
+            <div><a href="http://blog.sqrtthree.com/rss.xml" target="_blank">RSS</a></div>
+          
+        </li>
+        <li class="col-md-3">
+          <h2>GitHub</h2>
+          
+            <div><a target="_blank " href="https://github.com/sqrthree">GitHub</a></div>
+          
+            <div><a target="_blank " href="https://github.com/sqrthree/sqrthree.github.io">sqrthree.github.io</a></div>
+          
+            <div><a target="_blank " href="https://github.com/sqrthree/awesome-npm-packages">awesome-npm-packages</a></div>
+          
+            <div><a target="_blank " href="https://github.com/sqrthree/gitmit">gitmit</a></div>
+          
+        </li>
+        <li class="col-md-3">
+          <h2>联系方式</h2>
+          
+            <div><a href="javascript:;">QQ</a> - 511249910</div>
+          
+            <div><a href="javascript:;">E-mail</a> - imsqrtthree@gmail.com</div>
+          
+        </li>
+        <li class="col-md-3">
+          <h2>内容许可</h2>
+          <div>除特别说明外，用户内容均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">署名-非商业性使用-禁止演绎 4.0 国际 (CC BY-NC-ND 4.0)</a> 进行许可。</div>
+        </li>
+      </ul>
+    </div>
+    <p class="text-md-right">
+      <strong>©2016 <a href="https://github.com/sqrthree" target="_blank">根号三</a></strong>
+      <strong>Theme by <a href="http://huangxuan.me/" target="_blank">Hux</a></strong>
+      <strong>Power by <a href="https://hexo.io/" target="_blank">Hexo</a></strong>
+    </p>
+  </div>
+</footer>
+
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/dist/js/index.min.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64863915-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?be6e4b8e6af93860f98b001aab5cbe79";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>

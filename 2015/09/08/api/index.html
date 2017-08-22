@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="前端开发者, 擅长各项前端技能，深入研究移动端开发与前端性能, 对 Nodejs 后端开发略有涉及。此为博客一枚.">
+    <meta name="keyword"  content="前端 前端工程师 HTML5 CSS3 Javascript Node.js">
+    <meta name="author"  content="sqrtthree | 根号三">
+    <meta name="email"  content="sqrtthree@foxmail.com | imsqrtthree@gmail.com">
+		<title>
+      
+        谈谈我理解的API接口设计 - 根号三
+      
+    </title>
+    <link rel="shortcut icon" href="https://assets-cdn.github.com/favicon.ico">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/dist/styles/index.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-light navbar-fixed-top navbar-custom">
+  <div class="clearfix">
+    <button class="navbar-toggler pull-right hidden-sm-up" type="button" data-toggle="collapse" data-target="#main-nav">&#9776;</button>
+    <a class="navbar-brand hidden-sm-up" href="/">根号三</a>
+  </div>
+  <div id="main-nav" class="collapse navbar-toggleable-xs in">
+    <a class="navbar-brand hidden-sm-down" href="/">根号三</a>
+    <ul class="nav navbar-nav navbar-right text-uppercase hidden-sm-down">
+      
+        
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">about</a>
+            </li>
+            
+        
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">categories</a>
+            </li>
+            
+        
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">Tags</a>
+            </li>
+            
+        
+      
+      
+        
+            <li class="nav-item">
+              <a class="nav-link" href="/rss.xml">RSS</a>
+            </li>
+        
+      
+    </ul>
+  </div>
+</nav>
+
+    
+  <header class="intro-header">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        
+          <div class="post-heading">
+              <div class="tags ghost-tags">
+                
+                  <a class="tag" href="/tags/#api" title="api">api</a>
+                
+              </div>
+              <h1>谈谈我理解的API接口设计</h1>
+              
+              <span class="meta">Posted by sqrtthree on Sep 8, 2015</span>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container">
+    <div class="row">
+      
+        <div id="markdown-container" class="col-md-10 col-md-offset-1">
+          <div class="markdown-body">
+            <p>随着web 技术的发展, 前端技术在 web 开发中占着越来越重的比重. 尤其是最近出现的 AngularJS/React 等框架的出现, 让开发 SPA 应用类的开发方式产生了巨大的革新. 在开发过程中, 前后端的数据交互也变得越来越密切. 再加上层出不穷的各种终端设备, 我们迫切需要一个统一的 api 接口规范设计. 主要参考了Github 的 API 设计规范, 我按照自己的理解总结了一下.</p>
+<a id="more"></a>
+<h2 id="关于协议"><a href="#关于协议" class="headerlink" title="关于协议"></a>关于协议</h2><p>为了确保通信安全, 建议API与用户的通信协议，总是使用HTTPS协议.</p>
+<h2 id="关于域名"><a href="#关于域名" class="headerlink" title="关于域名"></a>关于域名</h2><p>为了提高可维护性, 建议尽量将API部署在专用域名之下. 如 <code>https://api.github.com</code></p>
+<h2 id="关于版本号"><a href="#关于版本号" class="headerlink" title="关于版本号"></a>关于版本号</h2><p>建议将 API 的版本号放入 URL 中, 如<code>https://api.github.com/v1/</code>. 但是 Github 似乎采用了另外一种方案, 就是将版本号放在了HTTP头信息中, <a href="https://developer.github.com/v3/media/#request-specific-version" target="_blank" rel="external">看这里看这里</a>. 但个人感觉不是太直观. 但前端在请求中可以省略3个字符. <em>(:з」∠)</em></p>
+<h2 id="关于请求路径"><a href="#关于请求路径" class="headerlink" title="关于请求路径"></a>关于请求路径</h2><p>RESTful API是目前比较成熟的一套互联网应用程序的API设计理论. 在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词. 并且建议所用的名词和数据库中的集合名相对应. 并且在获取一组数据/集合的时候, 应统一使用复数形式.</p>
+<p>比如, 需要请求所有的用户信息. 可以设计为这样: <code>https://api.example.com/v1/users</code>.</p>
+<h2 id="关于请求方法"><a href="#关于请求方法" class="headerlink" title="关于请求方法"></a>关于请求方法</h2><p>常用的 HTTP请求方法有5个. 分别如下:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td style="text-align:center">从服务器取出资源</td>
+</tr>
+<tr>
+<td>POST</td>
+<td style="text-align:center">在服务器新建一个资源</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td style="text-align:center">用于完整的替换资源或者创建指定身份的资源(更新资源)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td style="text-align:center">用于局部更新资源</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td style="text-align:center">用于删除某个资源</td>
+</tr>
+</tbody>
+</table>
+<p>比如:</p>
+<ul>
+<li>GET <code>/users</code> 列出所有的用户</li>
+<li>GET <code>/users/:ID</code> 列出指定用户的信息</li>
+<li>POST <code>/users</code> 新建一个用户</li>
+<li>DELETE <code>/users/:ID</code> 删除指定的用户</li>
+</ul>
+<p>也可以使用语义化的路径方式进行分类, 如:</p>
+<ul>
+<li>GET <code>/users</code> 列出所有的用户</li>
+<li>POST <code>/users/create</code> 创建一个新用户</li>
+<li>POST <code>/users/update</code> 更新信息</li>
+</ul>
+<h2 id="关于常见的请求参数"><a href="#关于常见的请求参数" class="headerlink" title="关于常见的请求参数"></a>关于常见的请求参数</h2><p>比如在数据过多, 需要对数据进行分页请求的时候, 我们应该统一 API 请求参数. 常见的有这些.</p>
+<ul>
+<li><code>limit=10</code> 指定返回记录的数量</li>
+<li><code>offset=10</code> 指定返回记录的开始位置。</li>
+<li><code>page=2&amp;per_page=100</code> 指定第几页，以及每页的记录数。</li>
+<li><code>sortby=name&amp;order=asc</code> 指定返回结果按照哪个属性排序，以及排序顺序。</li>
+<li><code>animal_type_id=1</code> 指定筛选条件</li>
+</ul>
+<h2 id="关于返回值"><a href="#关于返回值" class="headerlink" title="关于返回值"></a>关于返回值</h2><p>返回值的数据格式应严格按照 JSON 规范.JSON（JavaScript Object Notation）是一种轻量级，基于文本，语言无关的数据交换格式。其包括了基本数据类型4种和复合数据类型2种，共6种数据类型.</p>
+<p>首先. 基本数据类型有:</p>
+<ul>
+<li>Number可以表示整数和浮点数。</li>
+<li>Boolean可以表示真假，值为true或false。</li>
+<li>String表示一个字符串。</li>
+<li>Null通常用于表示空对象. 输出的数据结构中空字段的值一律为 null.</li>
+</ul>
+<p>复合数据类型Object是无序的集合，以键值对的方式保持数据。</p>
+<ol>
+<li><p>必须根据操作和状态设置相应的 HTTP 响应状态码. 具体可参考<a href="http://tools.ietf.org/html/rfc7231#page-49" target="_blank" rel="external">http://tools.ietf.org/html/rfc7231#page-49</a>、<a href="http://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81" target="_blank" rel="external">http://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81</a></p>
+</li>
+<li><p>Content-Type字段定义了响应体的类型. 一般情况下，浏览器会根据该类型对内容进行正确的处理。推荐设置为”text/javascript”或”text/plain”. 并且通常需要指定一个字符集, 如果字符编码为UTF-8时，可以不指定字符集</p>
+</li>
+<li><p>返回的数据包含在http响应体中。数据 必须(MUST) 是一个JSON Object。该Object可能包含3个字段：status，statusInfo，data。</p>
+</li>
+<li><p>status字段必须是一个不小于0的JSON Number整数，表示请求的状态. 0：表示server端理解了请求，成功处理并返回. 非0：表示发生错误, 可以根据错误类型扩展错误码.</p>
+</li>
+<li><p>statusInfo字段通常是一个JSON String或JSON Object，表示除了请求状态外server端想要对status做出的说明，使client端能够获取更多信息进行后续处理. 这个字段属于可选字段.</p>
+</li>
+<li><p>data 字段可以是任意 JSON 类型, 表示请求返回的数据主体. 数据主体data包含了在请求成功时有意义的数据.</p>
+</li>
+</ol>
+<p>例如:</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 请求成功</span></div><div class="line">&#123;</div><div class="line">    <span class="attribute">status</span>: <span class="number">0</span>,</div><div class="line">    <span class="attribute">statusInfo</span>: <span class="string">'请求成功'</span>,</div><div class="line">    <span class="attribute">data</span>: &#123;</div><div class="line">        <span class="attribute">name</span>: <span class="string">'Tom'</span>,</div><div class="line">        <span class="attribute">ag</span>: <span class="number">12</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 请求失败</span></div><div class="line">&#123;</div><div class="line">    <span class="attribute">status</span>: <span class="number">1</span>,</div><div class="line">    <span class="attribute">statusInfo</span>: <span class="string">'权限不足'</span></div><div class="line">    <span class="comment">// 或者是复杂类型</span></div><div class="line">    <span class="attribute">statusInfo</span>: &#123;</div><div class="line">        <span class="string">'text'</span>: <span class="string">'参数错误'</span>,</div><div class="line">        <span class="string">'parameters'</span>: &#123;</div><div class="line">            <span class="string">"email"</span>: <span class="string">"电子邮件格式不正确"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="关于文档规范"><a href="#关于文档规范" class="headerlink" title="关于文档规范"></a>关于文档规范</h2><p>可参考 github 的文档写作形式.</p>
+<p>1、 请求信息<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET '/users' 获取用户列表 <span class="comment">// 请求方式, 请求路径, 方法描述</span></div></pre></td></tr></table></figure></p>
+<p>2、 请求参数</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数一</td>
+<td>参数类型</td>
+<td>参数描述</td>
+</tr>
+</tbody>
+</table>
+<p>3、 Response 响应结果示例<br>给出不同状态的响应结果示例, 便于接口对接和调试.<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attribute">status</span>: <span class="number">0</span>,</div><div class="line">    <span class="attribute">statusInfo</span>: <span class="string">'请求成功'</span>,</div><div class="line">    <span class="attribute">data</span>: [&#123;</div><div class="line">        <span class="attribute">id</span>: <span class="number">1</span>,</div><div class="line">        <span class="attribute">name</span>: <span class="string">'Tom'</span></div><div class="line">    &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          </div>
+          
+            
+              <div id="donation">
+  <h2>您的鼓励是作者写作最大的动力</h2>
+  <p>如果您认为本网站的文章质量不错，读后觉得收获很大，不妨请我喝杯咖啡，让我有动力继续写出高质量的文章。: )</p>
+  
+    <a href="http://7xl8me.com1.z0.glb.clouddn.com/alipay.JPG" class="btn btn-primary" target="_blank">支付宝打赏</a>
+  
+  
+    <a href="http://7xl8me.com1.z0.glb.clouddn.com/wechat_receive_money.JPG" class="btn btn-success" target="_blank">微信打赏</a>
+  
+</div>
+
+            
+          
+          
+  <div class="social-share" style="margin-top: 1em;"></div>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+          
+  <hr>
+  <ul class="pager">
+    <li class="pager-prevnull">
+      
+        <a href="/2015/10/09/strict-mode/" data-toggle="tooltip" data-placement="top" title="聊聊 JS 中的严格模式">
+          Previous<br>
+          <span>聊聊 JS 中的严格模式</span>
+        </a>
+      
+    </li>
+    <li class="pager-next">
+      
+        <a href="/2015/08/29/utf8-to-b64/" data-toggle="tooltip" data-placement="top" title="解决 Javascript 中 atob 方法解码中文字符乱码问题">
+          Next<br>
+          <span>解决 Javascript 中 atob 方法解码中文字符乱码问题</span>
+        </a>
+      
+
+    </li>
+</ul>
+
+          
+  
+    <!-- 网易云跟帖 start -->
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+      <script>
+      var cloudTieConfig = {
+        url: document.location.href,
+        sourceId: "",
+        productKey: "c3543b8fa8f94d3c88ec9b8a1e9e6758",
+        target: "cloud-tie-wrapper"
+      };
+      var yunManualLoad = true;
+      Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+      </script>
+    <!-- 网易云跟帖 end -->
+  
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+
+    <footer id="footer">
+  <div class="container">
+    <div class="row">
+      <ul>
+        <li class="col-md-3">
+          <h2>友情链接</h2>
+          
+            <div><a href="https://github.com/sqrthree" target="_blank">GitHub</a></div>
+          
+            <div><a href="https://zhuanlan.zhihu.com/FETalk" target="_blank">FETalk</a></div>
+          
+            <div><a href="http://blog.sqrtthree.com/rss.xml" target="_blank">RSS</a></div>
+          
+        </li>
+        <li class="col-md-3">
+          <h2>GitHub</h2>
+          
+            <div><a target="_blank " href="https://github.com/sqrthree">GitHub</a></div>
+          
+            <div><a target="_blank " href="https://github.com/sqrthree/sqrthree.github.io">sqrthree.github.io</a></div>
+          
+            <div><a target="_blank " href="https://github.com/sqrthree/awesome-npm-packages">awesome-npm-packages</a></div>
+          
+            <div><a target="_blank " href="https://github.com/sqrthree/gitmit">gitmit</a></div>
+          
+        </li>
+        <li class="col-md-3">
+          <h2>联系方式</h2>
+          
+            <div><a href="javascript:;">QQ</a> - 511249910</div>
+          
+            <div><a href="javascript:;">E-mail</a> - imsqrtthree@gmail.com</div>
+          
+        </li>
+        <li class="col-md-3">
+          <h2>内容许可</h2>
+          <div>除特别说明外，用户内容均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank">署名-非商业性使用-禁止演绎 4.0 国际 (CC BY-NC-ND 4.0)</a> 进行许可。</div>
+        </li>
+      </ul>
+    </div>
+    <p class="text-md-right">
+      <strong>©2016 <a href="https://github.com/sqrthree" target="_blank">根号三</a></strong>
+      <strong>Theme by <a href="http://huangxuan.me/" target="_blank">Hux</a></strong>
+      <strong>Power by <a href="https://hexo.io/" target="_blank">Hexo</a></strong>
+    </p>
+  </div>
+</footer>
+
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/dist/js/index.min.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64863915-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?be6e4b8e6af93860f98b001aab5cbe79";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>
