@@ -2,9 +2,9 @@
 
 ## About Me
 
-I'm a Front-End developer, now living in ZhengZhou, China.
+I'm a web developer, now living in ZhengZhou, China.
 
-I'm ❤  programming & UI design.
+I'm ❤ programming & UI design.
 
 ## Skills
 
@@ -31,4 +31,4 @@ I'm ❤  programming & UI design.
 - GitHub: [@sqrthree](https://github.com/sqrthree)
 - Twitter: [@sqrtthree](https://twitter.com/sqrtthree)
 - Weibo: [@sqrtthree](http://weibo.com/sqrtthree)
-- Blog: [http://blog.sqrtthree.com/](http://blog.sqrtthree.com/)
+- Blog: [blog.sqrtthree.com](http://blog.sqrtthree.com/)
