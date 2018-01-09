@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/sqrthree/MyBlog.svg?branch=master)](https://travis-ci.org/sqrthree/MyBlog) [![](https://david-dm.org/sqrthree/lite.svg)](http://blog.sqrtthree.com/)
+[![Build Status](https://travis-ci.org/sqrthree/MyBlog.svg?branch=master)](https://travis-ci.org/sqrthree/MyBlog)
+[![](https://david-dm.org/sqrthree/MyBlog.svg)](http://blog.sqrtthree.com/)
 
 ## About Me
 
