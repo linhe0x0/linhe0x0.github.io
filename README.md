@@ -31,5 +31,4 @@ I'm ❤ programming & UI design.
 - Mail: [imsqrtthree@gmail.com](mailto:imsqrtthree@gmail.com)
 - GitHub: [@sqrthree](https://github.com/sqrthree)
 - Twitter: [@sqrtthree](https://twitter.com/sqrtthree)
-- Weibo: [@sqrtthree](http://weibo.com/sqrtthree)
 - Blog: [blog.sqrtthree.com](http://blog.sqrtthree.com/)
