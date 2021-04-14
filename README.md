@@ -1,3 +1,5 @@
+[![](https://david-dm.org/sqrthree/blog.svg)](http://blog.sqrtthree.com/)
+
 ## About Me
 
 Independent Web Developer.
@@ -14,10 +16,6 @@ I'm ❤ programming & UI design.
 ## Archives
 
 - [https://github.com/sqrthree/sqrthree.github.io/issues](https://github.com/sqrthree/sqrthree.github.io/issues)
-
-## Social events
-
-- [掘金翻译计划](https://github.com/xitu/gold-miner)
 
 ## Tools
 
